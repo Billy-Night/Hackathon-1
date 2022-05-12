@@ -1,15 +1,26 @@
+import React, { useContext } from "react";
+import { MyContext } from '../context/MyProvider';
 import { useNavigate } from 'react-router-dom';
 
 
 const Location = () => {
 
-    const navigate = useNavigate();
-    
-    
-    const handleLocationClick = () => (
-      navigate('/results')
-    );
+    const context = useContext(MyContext);
 
+    const navigate = useNavigate();
+
+    const handleLocationClick = () => {
+        context.handleApiLoc();
+        navigate('/results');
+    };
+
+    const handleChangeLocation = (event) => {
+        if (event.currentTarget.id === "start") {
+        context.setStartLocation(event.currentTarget.value);
+        } else {
+        context.setEndLocation(event.currentTarget.value);
+        }    
+      }
 
     return (
         <div>
@@ -18,17 +29,21 @@ const Location = () => {
         <div className="mb-3">
           <label>Enter Start Location</label>
           <input
-            type="text"
+            value={context.startLocation}
             className="form-control"
             placeholder="Start Location"
+            id="start"
+            onChange={handleChangeLocation}
           />
         </div>
         <div className="mb-3">
           <label>Enter End Location</label>
           <input
-            type="text"
+            value={context.endLocation}
             className="form-control"
             placeholder="End Location"
+            onChange={handleChangeLocation}
+            id="end"
           />
         </div>
         <div className="d-grid">

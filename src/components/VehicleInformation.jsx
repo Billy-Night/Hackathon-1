@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../context/MyProvider';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const VehicleInformation = () => {
@@ -14,6 +13,16 @@ const VehicleInformation = () => {
     navigate('/Location')
     );
 
+    const handleChangeVehicle = (event) => {
+        if (event.currentTarget.id === "vehicleMake") {
+        context.setUserMake(event.currentTarget.value);
+        } else if(event.currentTarget.id === "vehicleModel") {
+        context.setVehicleModel(event.currentTarget.value);
+        } else {
+        context.setVehicleYear(event.currentTarget.value);
+        }    
+      }
+
     return (
       <form>
         <h3>Vehicle Information</h3>
@@ -23,7 +32,8 @@ const VehicleInformation = () => {
             value={context.vehicleMake}
             className="form-control"
             placeholder="Make of your vehicle"
-            onChange={context.handleChangeVehicle}
+            onChange={handleChangeVehicle}
+            id="vehicleMake"
           />
         </div>
         <div className="mb-3">
@@ -32,7 +42,8 @@ const VehicleInformation = () => {
             value={context.vehicleModel}
             className="form-control"
             placeholder="Enter Model"
-            onChange={context.handleChangeVehicle}
+            onChange={handleChangeVehicle}
+            id="vehicleModel"
           />
         </div>
         <div className="mb-3">
@@ -40,18 +51,9 @@ const VehicleInformation = () => {
           <input
             value={context.vehicleYear}
             className="form-control"
-            placeholder="Enter Model"
-            onChange={context.handleChangeVehicle}
+            placeholder="Enter Year"
+            onChange={handleChangeVehicle}
           />
-        </div>
-        <div className="mb-3">
-          <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
-          </div>
         </div>
         <div className="d-grid">
           <button onClick={handleVehicleClick} type="submit" className="btn btn-primary">

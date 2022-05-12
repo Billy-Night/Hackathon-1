@@ -1,20 +1,22 @@
-import React, {useContext} from 'react';
-import { MyContext } from './context/MyProvider';
+// import React, {useContext} from 'react';
+// import { MyContext } from './context/MyProvider';
 
 
-const AllInfo = () => {
-    const context = useContext(MyContext);
+// const AllInfo = () => {
+//     const context = useContext(MyContext);
   
 
-//   // Function to switch which section is displayed on button click
-//   const switchDisplay = (section) => (context.setCurrentSection(section));
+//   const handleChangeVehicle = (event) => {
+//     if (event.currentTarget.id === "") {
+//     context.setUserVehicle(event.currentTarget.value);
+//     } else if(event.currentTarget.value.id === "") {
+//     context.setVehicleModel(event.currentTarget.value);
+//     } else {
+//     context.setVehicleYear(event.currentTarget.value);
+//     }    
+//   }
 
-  const handleChangeVehicle = (event) => {
-    setUserVehicle(event.currentTarget.value);
-    setVehicleModel(event.currentTarget.value);
-    setVehicleYear(event.currentTarget.value);
-}
+  
+// }
 
-
-
-export default AllInfo;
+// export default AllInfo;

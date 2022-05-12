@@ -43,13 +43,13 @@ const handleSignIn = () => (
           </div>
         </div>
         <div className="d-grid">
-          <button onClick={handleSignIn} type="submit" className="btn btn-primary">
+          <button onClick={handleSignIn} className="btn btn-primary">
             Submit
           </button>
         </div>
-        <p className="forgot-password text-right">
+        {/* <p className="forgot-password text-right">
           Forgot <a href="#">password?</a>
-        </p>
+        </p> */}
       </form>
     </div>
   )}
