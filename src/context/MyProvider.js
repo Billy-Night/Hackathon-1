@@ -22,7 +22,13 @@ let [cyclingFoot, setCyclingFoot] = useState({});
 
 let [apiLoaded, setapiLoaded] =useState(false);
 
-let [carbonSaved, setCarbonSaved] = useState(0);
+// let [carbonSaved, setCarbonSaved] = useState(0);
+
+let [carCarb, setCarCarb] = useState(0);
+
+let [cyclingCarb, setCyclingCarb] = useState(0);
+
+let [apiLoaded2, setapiLoaded2] = useState(false);
 
 const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
 
@@ -42,6 +48,7 @@ const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
               lat: endData.data[0].latitude,
               lon: endData.data[0].longitude,
             });
+            setapiLoaded2(true);
         });
     }
 
@@ -50,15 +57,17 @@ const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
         .then((res) => res.json())
         .then((carData) => {
             setVehicleFoot({carData});
+            setCarCarb(carData.data.carbon_footprint.grams.total)
         });
         fetch(`https://klimaat.app/api/v1/calculate?start=${startCords.lat},${startCords.lon}&end=${endCords.lat},${endCords.lon}&transport_mode=cycling&key=live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==`)
         .then((res) => res.json())
         .then((cycleData) => {
             setCyclingFoot({cycleData});
+            setCyclingCarb(cycleData.data.carbon_footprint.grams.total)
             setapiLoaded(true)
-            savingCal();
+            
         });
-        
+        // savingCal();
     }
 
     // useEffect(() => {
@@ -67,12 +76,19 @@ const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
     //    setCarbonSaved(result);
     // }, [apiLoaded])
 
-    const savingCal = () => {
-       let result = (vehicleFoot.carData.data.carbon_footprint.grams.total - cyclingFoot.cycleData.data.carbon_footprint.grams.total);
+
+    // useEffect(() => {
+    //     let result = (carCarb - cyclingCarb);
        
-       setCarbonSaved(result);
+    //     setCarbonSaved(result);;
+    // }, [apiLoaded])
+
+    // const savingCal = () => {
+    //    let result = (carCarb - cyclingCarb);
+       
+    //    setCarbonSaved(result);
       
-    }
+    // }
 
 
 
@@ -97,8 +113,12 @@ const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
                 carFootApi: carFootApi,
                 vehicleFoot: vehicleFoot,
                 cyclingFoot: cyclingFoot,
-                carbonSaved: carbonSaved,
-                savingCal: savingCal
+                // carbonSaved: carbonSaved,
+                // savingCal: savingCal,
+                apiLoaded: apiLoaded,
+                carCarb: carCarb,
+                cyclingCarb: cyclingCarb
+
             }} >
             {props.children }
         </MyContext.Provider>
