@@ -12,7 +12,7 @@ const Location = () => {
     const handleLocationClick = () => {
         context.handleApiLoc();
         navigate('/results');
-        context.handleAPIKli();
+        // context.handleAPIKli();
     };
 
     const handleChangeLocation = (event) => {

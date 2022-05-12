@@ -12,44 +12,49 @@ let [vehicleYear, setVehicleYear] = useState("");
 let [startLocation, setStartLocation] = useState("");
 let [endLocation, setEndLocation] = useState("");
 
+
 let [startCords, startSetCords] = useState({});
 let [endCords, endSetCords] = useState({});
 
 let [vehicleFoot, setVehicleFoot] = useState({});
+
+let [cyclingFoot, setCyclingFoot] = useState({});
 
 const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
 
     const handleApiLoc = () => {
       fetch(`http://api.positionstack.com/v1/forward?access_key=${apiKey}&query=${startLocation}`)
       .then((response) => response.json())
-      .then((data) => {
+      .then((startData) => {
           startSetCords({
-              lat: data.data[0].latitude,
-              lon: data.data[0].longitude,
+              lat: startData.data[0].latitude,
+              lon: startData.data[0].longitude,
             });
       });
       fetch(`http://api.positionstack.com/v1/forward?access_key=${apiKey}&query=${endLocation}`)
       .then((response) => response.json())
-      .then((data) => {
+      .then((endData) => {
           endSetCords({
-              lat: data.data[0].latitude,
-              lon: data.data[0].longitude,
+              lat: endData.data[0].latitude,
+              lon: endData.data[0].longitude,
             });
         });
     }
 
-    // const apiKliKey = "live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g=="
-
-    const handleAPIKli = () => {
-        fetch(`https://klimaat.app/api/v1/calculate?start=60007&end=48127&transport_mode=driving&vehicle_make=Vauxhall&vehicle_model=Vectra&vehicle_year=2005&key=live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==`)
+    const carFootApi = () => {
+        fetch(`https://klimaat.app/api/v1/calculate?start=${startCords.lat},${startCords.lon}&end=${endCords.lat},${endCords.lon}&transport_mode=driving&vehicle_make=${vehicleMake}&vehicle_model=${vehicleModel}&vehicle_year=${vehicleYear}&key=live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==`)
         .then((res) => res.json())
-        .then((data) => {
-            setVehicleFoot(data);
+        .then((carData) => {
+            setVehicleFoot({carData});
+        });
+        fetch(`https://klimaat.app/api/v1/calculate?start=${startCords.lat},${startCords.lon}&end=${endCords.lat},${endCords.lon}&transport_mode=cycling&key=live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==`)
+        .then((res) => res.json())
+        .then((cycleData) => {
+            setCyclingFoot({cycleData});
         });
     }
 
-//states for location info
-// let [userLocation, setUserLocation] = useState("");
+
 
 
     return (
@@ -69,9 +74,9 @@ const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
                 startSetCords: startSetCords,
                 startCords: startCords,
                 endCords: endCords,
-                handleAPIKli: handleAPIKli,
-                vehicleFoot: vehicleFoot
-                // handleChangeVehicle: handleChangeVehicle
+                carFootApi: carFootApi,
+                vehicleFoot: vehicleFoot,
+                cyclingFoot: cyclingFoot
             }} >
             {props.children }
         </MyContext.Provider>
