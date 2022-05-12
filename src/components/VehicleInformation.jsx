@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
 
-export default class VehicleInformation extends Component {
 
-  render() {
-      
+const VehicleInformation = () => {
+
     return (
       <form>
         <h3>Your Vehicle Information</h3>
@@ -47,5 +45,6 @@ export default class VehicleInformation extends Component {
         </div>
       </form>
     )
-  }
 }
+
+export default VehicleInformation;

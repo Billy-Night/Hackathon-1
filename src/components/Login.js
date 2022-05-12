@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
-// import { useNavigate } from 'react-router-dom';
-
-// const navigate = useNavigate();
+import { useNavigate } from 'react-router-dom';
 
 
-// const handleSignIn = () => (
-//   navigate('/vehicle-information')
-// );
 
 const Login = () => {
+
+const navigate = useNavigate();
+
+
+const handleSignIn = () => (
+  navigate('/vehicle-information')
+);
+
+
 
   return (
   <div>
@@ -43,7 +47,7 @@ const Login = () => {
           </div>
         </div>
         <div className="d-grid">
-          <button  type="submit" className="btn btn-primary">
+          <button onClick={handleSignIn} type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>
