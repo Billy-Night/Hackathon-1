@@ -1,23 +1,34 @@
 import React, { Component } from 'react'
-export default class Login extends Component {
+
+export default class VehicleInformation extends Component {
+
   render() {
+      
     return (
       <form>
-        <h3>Sign In</h3>
+        <h3>Your Vehicle Information</h3>
         <div className="mb-3">
-          <label>Email address</label>
+          <label>Make</label>
           <input
-            type="email"
+            type="text"
             className="form-control"
-            placeholder="Enter email"
+            placeholder="Make of your vehicle"
           />
         </div>
         <div className="mb-3">
-          <label>Password</label>
+          <label>Model</label>
           <input
-            type="password"
+            type="text"
             className="form-control"
-            placeholder="Enter password"
+            placeholder="Enter Model"
+          />
+        </div>
+        <div className="mb-3">
+          <label>Year</label>
+          <input
+            type="date"
+            className="form-control"
+            placeholder="Enter Model"
           />
         </div>
         <div className="mb-3">
@@ -27,9 +38,6 @@ export default class Login extends Component {
               className="custom-control-input"
               id="customCheck1"
             />
-            <label className="custom-control-label" htmlFor="customCheck1">
-              Remember me
-            </label>
           </div>
         </div>
         <div className="d-grid">
@@ -37,9 +45,6 @@ export default class Login extends Component {
             Submit
           </button>
         </div>
-        <p className="forgot-password text-right">
-          Forgot <a href="#">password?</a>
-        </p>
       </form>
     )
   }

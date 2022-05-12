@@ -2,8 +2,9 @@ import React from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import Login from './components/login.component'
+import Login from './components/Login'
 import SignUp from './components/signup.component'
+import VehicleInformation from './components/VehicleInformation'
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route exact path="/" element={<Login />} />
               <Route path="/sign-in" element={<Login />} />
               <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/vehicle-information" element={<VehicleInformation />} />
             </Routes>
           </div>
         </div>
