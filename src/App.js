@@ -28,6 +28,11 @@ function App() {
                     Sign up
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/vehicle-information'}>
+                    Vehicle Information
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
