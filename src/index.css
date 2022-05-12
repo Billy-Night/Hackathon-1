@@ -60,3 +60,10 @@ body, html, .App, #root, .auth-wrapper {
 .forgot-password a {
   color:#83BD75;
 }
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #83BD75 !important;
+  border-color: #83BD75 !important;
+}
+
+
