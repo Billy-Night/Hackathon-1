@@ -1,32 +1,47 @@
+import React, { useContext } from "react";
+import { useNavigate } from 'react-router-dom';
+import { MyContext } from '../context/MyProvider';
+
 
 
 const VehicleInformation = () => {
 
+    const context = useContext(MyContext);
+
+    const navigate = useNavigate();
+
+    const handleVehicleClick = () => (
+    navigate('/Location')
+    );
+
     return (
       <form>
-        <h3>Your Vehicle Information</h3>
+        <h3>Vehicle Information</h3>
         <div className="mb-3">
           <label>Make</label>
           <input
-            type="text"
+            value={context.vehicleMake}
             className="form-control"
             placeholder="Make of your vehicle"
+            onChange={context.handleChangeVehicle}
           />
         </div>
         <div className="mb-3">
           <label>Model</label>
           <input
-            type="text"
+            value={context.vehicleModel}
             className="form-control"
             placeholder="Enter Model"
+            onChange={context.handleChangeVehicle}
           />
         </div>
         <div className="mb-3">
           <label>Year</label>
           <input
-            type="date"
+            value={context.vehicleYear}
             className="form-control"
             placeholder="Enter Model"
+            onChange={context.handleChangeVehicle}
           />
         </div>
         <div className="mb-3">
@@ -39,7 +54,7 @@ const VehicleInformation = () => {
           </div>
         </div>
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+          <button onClick={handleVehicleClick} type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>
@@ -47,4 +62,4 @@ const VehicleInformation = () => {
     )
 }
 
-export default VehicleInformation;
+export default VehicleInformation

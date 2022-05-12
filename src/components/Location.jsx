@@ -1,50 +1,44 @@
+import { useNavigate } from 'react-router-dom';
 
 
-const VehicleInformation = () => {
+const Location = () => {
+
+    const navigate = useNavigate();
+    
+    
+    const handleLocationClick = () => (
+      navigate('/results')
+    );
+
 
     return (
+        <div>
       <form>
-        <h3>Your Vehicle Information</h3>
+        <h3>Enter Your Journey</h3>
         <div className="mb-3">
-          <label>Make</label>
+          <label>Enter Start Location</label>
           <input
             type="text"
             className="form-control"
-            placeholder="Make of your vehicle"
+            placeholder="Start Location"
           />
         </div>
         <div className="mb-3">
-          <label>Model</label>
+          <label>Enter End Location</label>
           <input
             type="text"
             className="form-control"
-            placeholder="Enter Model"
+            placeholder="End Location"
           />
-        </div>
-        <div className="mb-3">
-          <label>Year</label>
-          <input
-            type="date"
-            className="form-control"
-            placeholder="Enter Model"
-          />
-        </div>
-        <div className="mb-3">
-          <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
-          </div>
         </div>
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+          <button onClick={handleLocationClick} type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>
       </form>
+      </div>
     )
 }
 
-export default VehicleInformation;
+export default Location
