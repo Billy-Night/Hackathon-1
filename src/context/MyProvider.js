@@ -51,14 +51,16 @@ const MyProvider = (props) => {
               lat: endData.data[0].latitude,
               lon: endData.data[0].longitude,
             });
-            setapiLoaded2(true);
+            
             fetch(
               `https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=driving&vehicle_make=${vehicleMake}&vehicle_model=${vehicleModel}&vehicle_year=${vehicleYear}&key=${process.env.REACT_APP_APIKEY}`
             )
               .then((res) => res.json())
               .then((carData) => {
+                console.log(carData);
                 setVehicleFoot({ carData });
                 setCarCarb(carData.data.carbon_footprint.grams.total);
+                setapiLoaded2(true);
               });
             fetch(
               `https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=cycling&key=${process.env.REACT_APP_APIKEY}`
@@ -72,6 +74,8 @@ const MyProvider = (props) => {
           });
       });
   };
+
+
 
   // const apiKeyCarb = "live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==";
 

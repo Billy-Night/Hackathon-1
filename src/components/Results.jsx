@@ -8,7 +8,7 @@ const Results = () => {
 
     return (
         <div>
-            {context.apiLoaded === false ?
+            {context.apiLoaded === false && context.apiLoaded2 === false ?
             <div> 
             <h2>Loading Footprint</h2>
             <p>Just a second</p> 
@@ -16,7 +16,9 @@ const Results = () => {
             : 
             <div>
             <h1>GreenWay</h1>
+            {context.vehicleFoot === undefined ? <></> : 
             <p>The trip distance: {context.vehicleFoot.carData.data.distance.kms} km</p>
+            }
             <p>Carbon footprint for driving: {(context.carCarb).toFixed(0)} g</p>
             <p>Carbon footprint for cycing: {(context.cyclingCarb).toFixed(0)} g</p>
             <div>
