@@ -16,7 +16,8 @@ const Results = () => {
             </div>
             :
             <div>
-            
+            <h1>GreenWay</h1>
+            <p>The trip distance: {context.vehicleFoot.carData.data.distance.kms} km</p>
             <p>Carbon footprint for driving: {(context.carCarb).toFixed(0)} g</p>
             <p>Carbon footprint for cycing: {(context.cyclingCarb).toFixed(0)} g</p>
             <div>
