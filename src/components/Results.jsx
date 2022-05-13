@@ -10,11 +10,10 @@ const Results = () => {
         <div>
             {context.apiLoaded === false ?
             <div> 
-            <h2>Find the results below</h2>
-            <p>Click the button to get results</p> 
-            <button onClick={context.carFootApi}>click me</button>
+            <h2>Loading Footprint</h2>
+            <p>Just a second</p> 
             </div>
-            :
+            : 
             <div>
             <h1>GreenWay</h1>
             <p>The trip distance: {context.vehicleFoot.carData.data.distance.kms} km</p>
@@ -26,10 +25,6 @@ const Results = () => {
             </div>
             </div>
         }
-
-            
-            
-            
         </div>
     )
 }

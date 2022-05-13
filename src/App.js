@@ -18,6 +18,7 @@ function App() {
       <div className="App">
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
+            {}
             <Link className="navbar-brand" to={'/sign-in'}>
               GreenWay
             </Link>
