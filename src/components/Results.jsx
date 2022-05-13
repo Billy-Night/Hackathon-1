@@ -6,6 +6,7 @@ import walking from '../assets/walking.png';
 import facebook from '../assets/facebook.png';
 import instagram from '../assets/instagram.png';
 import twitter from '../assets/twitter.png';
+import Spinner from "./Spinner";
 
 const Results = () => {
     const context = useContext(MyContext);
@@ -17,7 +18,8 @@ const Results = () => {
             {context.apiLoaded === false ?
             <div> 
             <h2>Loading Footprint</h2>
-            <p>Just a second</p> 
+   
+            <Spinner /> 
             </div>
             : 
             <div>
