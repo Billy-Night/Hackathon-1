@@ -30,10 +30,10 @@ let [cyclingCarb, setCyclingCarb] = useState(0);
 
 let [apiLoaded2, setapiLoaded2] = useState(false);
 
-const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
+// const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
 
     const handleApiLoc = () => {
-      fetch(`http://api.positionstack.com/v1/forward?access_key=${apiKey}&query=${startLocation}`)
+      fetch(`https://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_LOCAPI_KEY}&query=${startLocation}`)
       .then((response) => response.json())
       .then((startData) => {
           startSetCords({
@@ -41,7 +41,7 @@ const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
               lon: startData.data[0].longitude,
             });
       });
-      fetch(`http://api.positionstack.com/v1/forward?access_key=${apiKey}&query=${endLocation}`)
+      fetch(`https://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_LOCAPI_KEY}&query=${endLocation}`)
       .then((response) => response.json())
       .then((endData) => {
           endSetCords({
@@ -52,14 +52,16 @@ const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
         });
     }
 
+    // const apiKeyCarb = "live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==";
+
     const carFootApi = () => {
-        fetch(`https://klimaat.app/api/v1/calculate?start=${startCords.lat},${startCords.lon}&end=${endCords.lat},${endCords.lon}&transport_mode=driving&vehicle_make=${vehicleMake}&vehicle_model=${vehicleModel}&vehicle_year=${vehicleYear}&key=live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==`)
+        fetch(`https://klimaat.app/api/v1/calculate?start=${startCords.lat},${startCords.lon}&end=${endCords.lat},${endCords.lon}&transport_mode=driving&vehicle_make=${vehicleMake}&vehicle_model=${vehicleModel}&vehicle_year=${vehicleYear}&key=${process.env.REACT_APP_APIKEY}`)
         .then((res) => res.json())
         .then((carData) => {
             setVehicleFoot({carData});
             setCarCarb(carData.data.carbon_footprint.grams.total)
         });
-        fetch(`https://klimaat.app/api/v1/calculate?start=${startCords.lat},${startCords.lon}&end=${endCords.lat},${endCords.lon}&transport_mode=cycling&key=live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==`)
+        fetch(`https://klimaat.app/api/v1/calculate?start=${startCords.lat},${startCords.lon}&end=${endCords.lat},${endCords.lon}&transport_mode=cycling&key=${process.env.REACT_APP_APIKEY}`)
         .then((res) => res.json())
         .then((cycleData) => {
             setCyclingFoot({cycleData});
