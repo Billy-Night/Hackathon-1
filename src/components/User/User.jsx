@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import { MyContext } from '../../context/MyProvider';
+// import React, { useContext } from "react";
+// import { MyContext } from '../../context/MyProvider';
 import './user.css'
 // import man from '../assets/man.png';
 // import App.css from '../app.css';
 // import './App.css'
 
 const User = () => {
-    const context = useContext(MyContext);
+    // const context = useContext(MyContext);
 
     
     return (
