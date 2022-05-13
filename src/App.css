@@ -2,4 +2,22 @@
   text-align: center;
 }
 
+.result img{
+  height: 60px;
+  width: 60px;
+}
 
+.social {
+  display: flex;
+  justify-content: space-around;
+}
+
+.social img {
+  height: 30px;
+  width: 30px;
+}
+
+.results p {
+  font-size: 1.1em;
+  font-style: bold;
+}
