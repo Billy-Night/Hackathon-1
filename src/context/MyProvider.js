@@ -26,7 +26,14 @@ const MyProvider = (props) => {
 
   let [cyclingCarb, setCyclingCarb] = useState(0);
 
-  let [apiLoaded2, setapiLoaded2] = useState(false);
+  let [walkFoot, setWalkFoot] = useState({});
+
+  let [walkCarb, setWalkCarb] = useState({});
+  // let [apiLoaded2, setapiLoaded2] = useState(false);
+
+  // let [carDistance, setCarDistance] = useState(0);
+
+  
 
   // let [loginDone, setLoginDone] = useState(false);
 
@@ -59,17 +66,25 @@ const MyProvider = (props) => {
               .then((carData) => {
                 console.log(carData);
                 setVehicleFoot({ carData });
+                // setCarDistance(carData.data.distance.kms);
                 setCarCarb(carData.data.carbon_footprint.grams.total);
-                setapiLoaded2(true);
-              });
-            fetch(
-              `https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=cycling&key=${process.env.REACT_APP_APIKEY}`
-            )
-              .then((res) => res.json())
-              .then((cycleData) => {
-                setCyclingFoot({ cycleData });
-                setCyclingCarb(cycleData.data.carbon_footprint.grams.total);
-                setapiLoaded(true);
+                // setapiLoaded2(true);
+                fetch(
+                  `https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=cycling&key=${process.env.REACT_APP_APIKEY}`
+                )
+                  .then((res) => res.json())
+                  .then((cycleData) => {
+                    setCyclingFoot({ cycleData });
+                    setCyclingCarb(cycleData.data.carbon_footprint.grams.total);
+                fetch(`https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=walking&key=${process.env.REACT_APP_APIKEY}`
+                )
+                .then((res) => res.json())
+                .then((walkData) => {
+                  setWalkFoot({ walkData });
+                  setWalkCarb(walkData.data.carbon_footprint.grams.total);
+                  setapiLoaded(true);
+                });
+                });
               });
           });
       });
@@ -102,7 +117,10 @@ const MyProvider = (props) => {
         apiLoaded: apiLoaded,
         carCarb: carCarb,
         cyclingCarb: cyclingCarb,
-        apiLoaded2: apiLoaded2,
+        walkFoot: walkFoot,
+        walkCarb: walkCarb
+        // apiLoaded2: apiLoaded2,
+        // carDistance: carDistance
         // setLoginDone: setLoginDone,
         // loginDone: loginDone
       }}
