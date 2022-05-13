@@ -11,7 +11,7 @@ const Results = () => {
             {context.apiLoaded === false ?
             <div> 
             <h2>Find the results below</h2>
-            <p>Click the button to get results</p>
+            <p>Click the button to get results</p> 
             <button onClick={context.carFootApi}>click me</button>
             </div>
             :
@@ -34,4 +34,4 @@ const Results = () => {
     )
 }
 
-export default Results 
+export default Results;

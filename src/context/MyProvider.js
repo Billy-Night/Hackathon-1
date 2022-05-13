@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 export const MyContext = React.createContext();
 
@@ -63,32 +63,10 @@ const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
         .then((res) => res.json())
         .then((cycleData) => {
             setCyclingFoot({cycleData});
-            setCyclingCarb(cycleData.data.carbon_footprint.grams.total)
-            setapiLoaded(true)
-            
+            setCyclingCarb(cycleData.data.carbon_footprint.grams.total);
+            setapiLoaded(true);
         });
-        // savingCal();
     }
-
-    // useEffect(() => {
-    //     let result = (vehicleFoot.carData.data.carbon_footprint.grams.total - cyclingFoot.cycleData.data.carbon_footprint.grams.total);
-       
-    //    setCarbonSaved(result);
-    // }, [apiLoaded])
-
-
-    // useEffect(() => {
-    //     let result = (carCarb - cyclingCarb);
-       
-    //     setCarbonSaved(result);;
-    // }, [apiLoaded])
-
-    // const savingCal = () => {
-    //    let result = (carCarb - cyclingCarb);
-       
-    //    setCarbonSaved(result);
-      
-    // }
 
 
 
@@ -113,12 +91,10 @@ const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
                 carFootApi: carFootApi,
                 vehicleFoot: vehicleFoot,
                 cyclingFoot: cyclingFoot,
-                // carbonSaved: carbonSaved,
-                // savingCal: savingCal,
                 apiLoaded: apiLoaded,
                 carCarb: carCarb,
-                cyclingCarb: cyclingCarb
-
+                cyclingCarb: cyclingCarb,
+                apiLoaded2: apiLoaded2
             }} >
             {props.children }
         </MyContext.Provider>

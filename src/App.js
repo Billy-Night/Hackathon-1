@@ -8,6 +8,7 @@ import SignUp from './components/signup.component'
 import VehicleInformation from './components/VehicleInformation'
 import Location from './components/Location'
 import Results from './components/Results'
+import User from './components/User/User'
 
 
 function App() {
@@ -42,6 +43,11 @@ function App() {
                     Location
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/user'}>
+                    User
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -55,6 +61,7 @@ function App() {
               <Route path="/vehicle-information" element={<VehicleInformation />} />
               <Route path="/location" element={<Location />} />
               <Route path="/results" element={<Results />} />
+              <Route path="/user" element={<User />} />
             </Routes>
           </div>
         </div>
