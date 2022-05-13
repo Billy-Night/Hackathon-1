@@ -28,6 +28,8 @@ const MyProvider = (props) => {
 
   let [apiLoaded2, setapiLoaded2] = useState(false);
 
+  // let [loginDone, setLoginDone] = useState(false);
+
   const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
 
   const handleApiLoc = () => {
@@ -73,22 +75,6 @@ const MyProvider = (props) => {
 
   // const apiKeyCarb = "live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==";
 
-  // const carFootApi = () => {
-  //     fetch(`https://klimaat.app/api/v1/calculate?start=${startCords.lat},${startCords.lon}&end=${endCords.lat},${endCords.lon}&transport_mode=driving&vehicle_make=${vehicleMake}&vehicle_model=${vehicleModel}&vehicle_year=${vehicleYear}&key=${process.env.REACT_APP_APIKEY}`)
-  //     .then((res) => res.json())
-  //     .then((carData) => {
-  //         setVehicleFoot({carData});
-  //         setCarCarb(carData.data.carbon_footprint.grams.total)
-  //     });
-  //     fetch(`https://klimaat.app/api/v1/calculate?start=${startCords.lat},${startCords.lon}&end=${endCords.lat},${endCords.lon}&transport_mode=cycling&key=${process.env.REACT_APP_APIKEY}`)
-  //     .then((res) => res.json())
-  //     .then((cycleData) => {
-  //         setCyclingFoot({cycleData});
-  //         setCyclingCarb(cycleData.data.carbon_footprint.grams.total);
-  //         setapiLoaded(true);
-  //     });
-  // }
-
   return (
     <MyContext.Provider
       value={{
@@ -113,6 +99,8 @@ const MyProvider = (props) => {
         carCarb: carCarb,
         cyclingCarb: cyclingCarb,
         apiLoaded2: apiLoaded2,
+        // setLoginDone: setLoginDone,
+        // loginDone: loginDone
       }}
     >
       {props.children}

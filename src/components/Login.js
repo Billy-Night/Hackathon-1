@@ -1,15 +1,21 @@
-// import { useState } from 'react';
+// import { MyContext } from '../context/MyProvider';
+// import React, { useContext } from 'react';
+
+// import React, { useContext } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {
 
-const navigate = useNavigate();
-// const [loginDone, setLoginDone] = useState(true);
+  // const context = useContext(MyContext);
 
-const handleSignIn = () => (
-  navigate('/vehicle-information')
-  // setLoginDone(false);
-);
+  const navigate = useNavigate();
+
+
+  const handleSignIn = () => {
+    navigate('/vehicle-information');
+    props.handleLogin();
+  };
 
   return (
   <div>

@@ -9,9 +9,9 @@ const VehicleInformation = () => {
 
     const navigate = useNavigate();
 
-    const handleVehicleClick = () => (
-    navigate('/Location')
-    );
+    const handleVehicleClick = () => {
+    navigate('/Location');
+    }
 
     const handleChangeVehicle = (event) => {
         if (event.currentTarget.id === "vehicleMake") {
