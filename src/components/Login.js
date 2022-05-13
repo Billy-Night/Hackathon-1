@@ -13,8 +13,8 @@ const Login = (props) => {
 
 
   const handleSignIn = () => {
-    navigate('/vehicle-information');
     props.handleLogin();
+    navigate('/vehicle-information');
   };
 
   return (
