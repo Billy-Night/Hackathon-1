@@ -30,10 +30,10 @@ let [cyclingCarb, setCyclingCarb] = useState(0);
 
 let [apiLoaded2, setapiLoaded2] = useState(false);
 
-// const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
+const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
 
     const handleApiLoc = () => {
-      fetch(`https://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_LOCAPI_KEY}&query=${startLocation}`)
+      fetch(`http://api.positionstack.com/v1/forward?access_key=${apiKey}&query=${startLocation}`)
       .then((response) => response.json())
       .then((startData) => {
           startSetCords({
@@ -41,7 +41,7 @@ let [apiLoaded2, setapiLoaded2] = useState(false);
               lon: startData.data[0].longitude,
             });
       });
-      fetch(`https://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_LOCAPI_KEY}&query=${endLocation}`)
+      fetch(`http://api.positionstack.com/v1/forward?access_key=${apiKey}&query=${endLocation}`)
       .then((response) => response.json())
       .then((endData) => {
           endSetCords({
@@ -69,8 +69,6 @@ let [apiLoaded2, setapiLoaded2] = useState(false);
             setapiLoaded(true);
         });
     }
-
-
 
 
     return (
