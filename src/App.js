@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { MyContext } from './context/MyProvider';
 import MyProvider from './context/MyProvider.js';
 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
@@ -18,9 +17,6 @@ import User from './components/User/User'
 
 function App() {
   let [loginDone, setLoginDone] = useState(false);
-
-  // const context = useContext(MyContext);
-
 
   const handleLogin = () => {
     setLoginDone(true);
@@ -89,5 +85,6 @@ function App() {
     </Router>
     </MyProvider>
   )
-}
-export default App
+};
+
+export default App;
