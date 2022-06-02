@@ -30,11 +30,14 @@ $ git clone git@github.com:Billy-Night/Hackathon-1.git
  2. $ npm install bootstrap
  3. $ npm install react-router-dom@6
  4. $ npm i autoprefixer
+ 5. Install CORS chrome extension link below in documentation
 
-## Documentation for the BootStrap Login
+## Documentation
 * https://www.positronx.io/build-react-login-sign-up-ui-template-with-bootstrap-4/
 * https://reactrouter.com/docs/en/v6/getting-started/installation
 * https://www.npmjs.com/package/autoprefixer
+* https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en
+  
 
 
 

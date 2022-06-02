@@ -9,7 +9,8 @@ const VehicleInformation = () => {
 
     const navigate = useNavigate();
 
-    const handleVehicleClick = () => {
+    const handleVehicleClick = (event) => {
+    event.preventDefault();
     navigate('/Location');
     }
 

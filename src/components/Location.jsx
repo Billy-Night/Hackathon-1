@@ -9,10 +9,10 @@ const Location = () => {
 
     const navigate = useNavigate();
 
-    const handleLocationClick = () => {
+    const handleLocationClick = (event) => {
+        event.preventDefault();
         context.handleApiLoc();
         navigate('/results');
-        // context.handleAPIKli();
     };
 
     const handleChangeLocation = (event) => {
