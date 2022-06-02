@@ -20,8 +20,6 @@ const MyProvider = (props) => {
 
   let [apiLoaded, setapiLoaded] = useState(false);
 
-  // let [carbonSaved, setCarbonSaved] = useState(0);
-
   let [carCarb, setCarCarb] = useState(0);
 
   let [cyclingCarb, setCyclingCarb] = useState(0);
@@ -29,19 +27,10 @@ const MyProvider = (props) => {
   let [walkFoot, setWalkFoot] = useState({});
 
   let [walkCarb, setWalkCarb] = useState({});
-  // let [apiLoaded2, setapiLoaded2] = useState(false);
-
-  // let [carDistance, setCarDistance] = useState(0);
-
-  
-
-  // let [loginDone, setLoginDone] = useState(false);
-
-  const apiKey = "fc876cfe815ea0849cd7a3ce2e788244";
 
   const handleApiLoc = () => {
     fetch(
-      `http://api.positionstack.com/v1/forward?access_key=${apiKey}&query=${startLocation}`
+      `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_APIKEY_LOC}&query=${startLocation}`
     )
       .then((response) => response.json())
       .then((startData) => {
@@ -50,7 +39,7 @@ const MyProvider = (props) => {
           lon: startData.data[0].longitude,
         });
         fetch(
-          `http://api.positionstack.com/v1/forward?access_key=${apiKey}&query=${endLocation}`
+          `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_APIKEY_LOC}&query=${endLocation}`
         )
           .then((response) => response.json())
           .then((endData) => {
@@ -60,23 +49,20 @@ const MyProvider = (props) => {
             });
             
             fetch(
-              `https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=driving&vehicle_make=${vehicleMake}&vehicle_model=${vehicleModel}&vehicle_year=${vehicleYear}&key=${process.env.REACT_APP_APIKEY}`
+              `https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=driving&vehicle_make=${vehicleMake}&vehicle_model=${vehicleModel}&vehicle_year=${vehicleYear}&key=${process.env.REACT_APP_APIKEY_CARB}`
             )
               .then((res) => res.json())
               .then((carData) => {
-                console.log(carData);
                 setVehicleFoot({ carData });
-                // setCarDistance(carData.data.distance.kms);
                 setCarCarb(carData.data.carbon_footprint.grams.total);
-                // setapiLoaded2(true);
                 fetch(
-                  `https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=cycling&key=${process.env.REACT_APP_APIKEY}`
+                  `https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=cycling&key=${process.env.REACT_APP_APIKEY_CARB}`
                 )
                   .then((res) => res.json())
                   .then((cycleData) => {
                     setCyclingFoot({ cycleData });
                     setCyclingCarb(cycleData.data.carbon_footprint.grams.total);
-                fetch(`https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=walking&key=${process.env.REACT_APP_APIKEY}`
+                fetch(`https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=walking&key=${process.env.REACT_APP_APIKEY_CARB}`
                 )
                 .then((res) => res.json())
                 .then((walkData) => {
@@ -89,12 +75,6 @@ const MyProvider = (props) => {
           });
       });
   };
-
-  // `https://klimaat.app/api/v1/calculate?start=43.689079,-1.364386&end=43.662391,-1.441327&transport_mode=driving&vehicle_make=audi&vehicle_model=a3&vehicle_year=2017&key=live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==`
-
-  // https://klimaat.app/api/v1/calculate?start=43.640535,-1.431907&end=43.662972,-1.418456&transport_mode=walking&key=live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==
-
-  // const apiKeyCarb = "live_9lmVYiQGfEj1w0Prsd91WLUmtEJ5qUuZq3jIFB_6c5A5m3BDGQMz1CL0SSBZMugvJ0Pg9kaTJRItk2bmviJ63g==";
 
   return (
     <MyContext.Provider
@@ -113,7 +93,6 @@ const MyProvider = (props) => {
         startSetCords: startSetCords,
         startCords: startCords,
         endCords: endCords,
-        // carFootApi: carFootApi,
         vehicleFoot: vehicleFoot,
         cyclingFoot: cyclingFoot,
         apiLoaded: apiLoaded,
@@ -121,10 +100,6 @@ const MyProvider = (props) => {
         cyclingCarb: cyclingCarb,
         walkFoot: walkFoot,
         walkCarb: walkCarb
-        // apiLoaded2: apiLoaded2,
-        // carDistance: carDistance
-        // setLoginDone: setLoginDone,
-        // loginDone: loginDone
       }}
     >
       {props.children}
