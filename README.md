@@ -1,7 +1,12 @@
 # GreenWay
 
-[GreenWay](#greenway)
-- [Introduction](#introduction)
+- [GreenWay](#greenway)
+  - [Introduction](#introduction)
+  - [Website](#website)
+  - [Git](#git)
+  - [The Technology](#the-technology)
+  - [Project start up](#project-start-up)
+  - [Documentation](#documentation)
 ## Introduction
 This project was created during a hackathon while at the Wild Code School, it was completed over the course of 24hrs. 
 
