@@ -30,39 +30,39 @@ const MyProvider = (props) => {
 
   const handleApiLoc = () => {
     fetch(
-      `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_APIKEY_LOC}&query=${startLocation}`
+      `https://dev.virtualearth.net/REST/v1/Locations/${startLocation}?&maxResults=1&key=${process.env.REACT_APP_APIKEY_LOC}`
     )
       .then((response) => response.json())
       .then((startData) => {
         startSetCords({
-          lat: startData.data[0].latitude,
-          lon: startData.data[0].longitude,
+          lat: startData.resourceSets[0].resources[0].point.coordinates[0],
+          lon: startData.resourceSets[0].resources[0].point.coordinates[1],
         });
         fetch(
-          `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_APIKEY_LOC}&query=${endLocation}`
+          `https://dev.virtualearth.net/REST/v1/Locations/${endLocation}?&maxResults=1&key=${process.env.REACT_APP_APIKEY_LOC}`
         )
           .then((response) => response.json())
           .then((endData) => {
             endSetCords({
-              lat: endData.data[0].latitude,
-              lon: endData.data[0].longitude,
+              lat: endData.resourceSets[0].resources[0].point.coordinates[0],
+              lon: endData.resourceSets[0].resources[0].point.coordinates[1],
             });
             
             fetch(
-              `https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=driving&vehicle_make=${vehicleMake}&vehicle_model=${vehicleModel}&vehicle_year=${vehicleYear}&key=${process.env.REACT_APP_APIKEY_CARB}`
+              `https://klimaat.app/api/v1/calculate?start=${startData.resourceSets[0].resources[0].point.coordinates[0]},${startData.resourceSets[0].resources[0].point.coordinates[1]}&end=${endData.resourceSets[0].resources[0].point.coordinates[0]},${endData.resourceSets[0].resources[0].point.coordinates[1]}&transport_mode=driving&vehicle_make=${vehicleMake}&vehicle_model=${vehicleModel}&vehicle_year=${vehicleYear}&key=${process.env.REACT_APP_APIKEY_CARB}`
             )
               .then((res) => res.json())
               .then((carData) => {
                 setVehicleFoot({ carData });
                 setCarCarb(carData.data.carbon_footprint.grams.total);
                 fetch(
-                  `https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=cycling&key=${process.env.REACT_APP_APIKEY_CARB}`
+                  `https://klimaat.app/api/v1/calculate?start=${startData.resourceSets[0].resources[0].point.coordinates[0]},${startData.resourceSets[0].resources[0].point.coordinates[1]}&end=${endData.resourceSets[0].resources[0].point.coordinates[0]},${endData.resourceSets[0].resources[0].point.coordinates[1]}&transport_mode=cycling&key=${process.env.REACT_APP_APIKEY_CARB}`
                 )
                   .then((res) => res.json())
                   .then((cycleData) => {
                     setCyclingFoot({ cycleData });
                     setCyclingCarb(cycleData.data.carbon_footprint.grams.total);
-                fetch(`https://klimaat.app/api/v1/calculate?start=${startData.data[0].latitude},${startData.data[0].longitude}&end=${endData.data[0].latitude},${endData.data[0].longitude}&transport_mode=walking&key=${process.env.REACT_APP_APIKEY_CARB}`
+                fetch(`https://klimaat.app/api/v1/calculate?start=${startData.resourceSets[0].resources[0].point.coordinates[0]},${startData.resourceSets[0].resources[0].point.coordinates[1]}&end=${endData.resourceSets[0].resources[0].point.coordinates[0]},${endData.resourceSets[0].resources[0].point.coordinates[1]}&transport_mode=walking&key=${process.env.REACT_APP_APIKEY_CARB}`
                 )
                 .then((res) => res.json())
                 .then((walkData) => {
@@ -108,3 +108,4 @@ const MyProvider = (props) => {
 };
 
 export default MyProvider;
+
